@@ -56,13 +56,14 @@ jobs:
     - name: Oras Push
       id: "oras-push"
       env:
-        REPO:   ${{ steps.template-config.outputs.repo }}
-        SERVER: ${{ steps.template-config.outputs.server }}
+        TARGET: ${{ steps.template-config.outputs.server }}/${{ steps.template-config.outputs.repo }}:${{ steps.meta.outputs.version }}
       run: |
-       while read -r tag; do
-          oras push "${tag}" \
-          --annotation-file ./annotations.json \
-          --artifact-type application/vnd.oci.image.layer.v1.tar+gzip ./bundle.tar.gz
+        oras push "${TARGET}" \
+        --annotation-file ./annotations.json \
+        --artifact-type application/vnd.oci.image.layer.v1.tar+gzip ./bundle.tar.gz
+        
+        while read -r tag; do
+          oras tag ${TARGET} ${tag}
         done < <(echo "${{ steps.meta.outputs.tags }}")
 
     - name: Oras Logout

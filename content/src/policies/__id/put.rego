@@ -1,20 +1,20 @@
 package peoplefinder.PUT.api.users.__id
 
-default allowed = false
+default allowed := false
 
-default visible = true
+default visible := true
 
-default enabled = true
+default enabled := true
 
-allowed {
+allowed if {
 	props = input.user.properties
 	props.department == "Operations"
 }
 
-allowed {
+allowed if {
 	input.user.key == input.resource.id
 }
 
-allowed {
+allowed if {
 	input.user.id == input.resource.id
 }

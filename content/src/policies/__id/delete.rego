@@ -1,22 +1,22 @@
 package peoplefinder.DELETE.api.users.__id
 
-default allowed = false
+default allowed := false
 
-default visible = false
+default visible := false
 
-default enabled = false
+default enabled := false
 
-allowed {
+allowed if {
 	props = input.user.properties
 	props.department == "Operations"
 	props.title == "IT Manager"
 }
 
-visible {
+visible if {
 	props = input.user.properties
 	props.department == "Operations"
 }
 
-enabled {
+enabled if {
 	allowed
 }

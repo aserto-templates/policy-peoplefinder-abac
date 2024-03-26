@@ -1,16 +1,16 @@
 package peoplefinder.POST.api.users.__id
 
-default allowed = false
+default allowed := false
 
-default visible = true
+default visible := true
 
-default enabled = false
+default enabled := false
 
-allowed {
+allowed if {
 	props = input.user.properties
 	props.department == "Operations"
 }
 
-enabled {
+enabled if {
 	allowed
 }

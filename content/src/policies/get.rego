@@ -1,7 +1,7 @@
 package peoplefinder.GET.api.users
 
-default allowed = true
+default allowed := true
 
-default visible = true
+default visible := true
 
-default enabled = true
+default enabled := true
